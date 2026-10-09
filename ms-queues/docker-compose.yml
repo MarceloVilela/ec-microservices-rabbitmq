@@ -1,0 +1,17 @@
+name: ms-queues
+
+services:
+  ms-queues:
+    container_name: ms-queues
+    image: rabbitmq:4-management-alpine
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+    ports:
+      - "127.0.0.1:5672:5672"
+      - "127.0.0.1:15672:15672"
+    networks: [ec-network]
+
+networks:
+  ec-network:
+    external: true

@@ -1,0 +1,10 @@
+### Cria uma transação (ms-transaction)
+POST http://localhost:8004/transaction
+Content-Type: application/json
+Accept: application/json
+
+{
+    "payer": 5,
+    "payee": 10,
+    "value": 53
+}
