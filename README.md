@@ -81,3 +81,13 @@ O host não precisa ter PHP nem Composer. Para rodar um comando no container `ap
 ```
 ./run.sh ms-transaction php artisan about
 ```
+
+## Testando o fluxo
+
+```
+curl -X POST localhost:8004/transaction -H 'Content-Type: application/json' -d '{"payer":5,"payee":10,"value":53}'
+docker exec notification-app php artisan notification    # consome a fila (Ctrl+C para sair)
+curl -X POST localhost:8005/notification/send -H 'Content-Type: application/json' -d '{"transaction":1,"name":"Fulano","email":"f@example.com","value":10}'
+```
+
+O `ms-notification` grava o log no Loggly se `LOGGLY_TOKEN` estiver em `ms-notification/src/.env`; sem token, grava em `ms-notification/src/storage/logs/notification.log`.

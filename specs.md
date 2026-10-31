@@ -37,7 +37,7 @@ Os 87 prints foram lidos e consolidados em `notas-github/aulas/rocket/php/micros
 
 Também na spec:
 - Portas: 8004, 8005, 5672 (AMQP) e 15672 (painel); login `admin`/`admin`.
-- Fila `notification_queue` não durável e consumo com `no_ack=true` (como na aula): se o RabbitMQ reiniciar, as mensagens se perdem; o R5 só vale com o broker de pé.
+- Fila `notification_queue` durável (`durable=true`: o RabbitMQ 4 recusa fila não durável e não exclusiva, ao contrário do 3.9 da aula) e consumo com `no_ack=true` (como na aula). As mensagens não são persistentes: se o RabbitMQ reiniciar, elas se perdem; o R5 só vale com o broker de pé.
 - Fora de escopo: validação de saldo/usuário e o desafio de refatorar o `ms-notification`.
 
 ## Fase 2: Design (como)
